@@ -1,0 +1,26 @@
+{
+    "name": "marciodojr/compiler",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Márcio Dias",
+            "email": "marciojr91@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mdojr\\Compiler\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mdojr\\Compiler\\Test\\": "tests"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}

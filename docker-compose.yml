@@ -1,0 +1,8 @@
+version: '3.1'
+
+services:
+  php-nginx:
+    image: marciodojr/php-fpm:80-dev-nginx
+    container_name: marciodojr-compilers-php
+    volumes:
+      - .:/var/www/app
