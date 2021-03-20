@@ -96,4 +96,4 @@ $accept = $dfa->acceptInput('a');
 
 2. Creating a DFA from a NFA
 
-please take a look at the file [DFAFromNFAFactoryTest](tests/DFAFromNFAFactoryTest.php).
+please take a look at the file [DFAFromNFAFactoryTest](tests/Unit/Automata/DFAFromNFAFactoryTest.php).
