@@ -66,16 +66,44 @@ abstract class AbstractNFA
         $newStates = $this->getNewStates($state, $inputElement);
 
         if (Alphabet::EPSILON === $inputElement) {
-            $newStates[] = $state;
+            array_unshift($newStates, $state);
         }
 
         return array_unique($newStates);
+    }
+
+    public function calculateEpsilonClosure()
+    {
+        $epsilonClosure = [];
+        $workList = [];
+        foreach ($this->states as $state) {
+            $epsilonClosure[$state] = [$state];
+            $workList[$state] = $state;
+        }
+
+        do {
+            $currentState = array_shift($workList);
+            $directEpsilonClosureStates = $this->executeTransitionForStateAndInputElement(
+                $currentState,
+                Alphabet::EPSILON
+            );
+
+            if (count($directEpsilonClosureStates) > count($epsilonClosure[$currentState])) {
+                $epsilonClosure[$currentState] = $directEpsilonClosureStates;
+                foreach ($directEpsilonClosureStates as $state) {
+                    $workList[$state] = $state;
+                }
+            }
+        } while ($workList);
+
+        return $epsilonClosure;
     }
 
     private function getNewStates(string $state, string $inputElement)
     {
         return $this->transistionFn[$state][$inputElement] ?? [];
     }
+
 
     private function parseStates(array $states)
     {

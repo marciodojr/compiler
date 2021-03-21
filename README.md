@@ -18,6 +18,7 @@ What you can do:
 - Create a NFA and check if it accepts an input.
 - Create a DFA from a NFA using the subset construction algorithm via DFAFromNFAFactory.
 - It is possible to get the transition's array after execution via `getLastInputTransitions()`.
+- Calculte the ϵ-closure.
 
 Example:
 
@@ -97,3 +98,27 @@ $accept = $dfa->acceptInput('a');
 2. Creating a DFA from a NFA
 
 please take a look at the file [DFAFromNFAFactoryTest](tests/Unit/Automata/DFAFromNFAFactoryTest.php).
+
+3. Calculate the ϵ-closure
+
+```php
+$epsilonClosure = $nfa->calculateEpsilonClosure();
+
+// $epsilonClosure value will be like this
+// [
+//     'n0' => [
+//         'n0',
+//     ],
+//     'n1' => [
+//         'n1',
+//         'n3',
+//     ],
+//     'n2' => [
+//         'n2',
+//         'n3',
+//     ],
+//     'n3' => [
+//         'n3',
+//     ],
+// ]
+```

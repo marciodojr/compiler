@@ -82,6 +82,30 @@ class NFATest extends TestCase
         $this->assertFalse($accept);
     }
 
+    public function testCalculateEpsilonClosureSuccess()
+    {
+        $nfa = $this->createNFAForTest();
+
+        $epsilonClosure = $nfa->calculateEpsilonClosure();
+
+        $this->assertEquals([
+            'n0' => [
+                'n0',
+            ],
+            'n1' => [
+                'n1',
+                'n3',
+            ],
+            'n2' => [
+                'n2',
+                'n3',
+            ],
+            'n3' => [
+                'n3',
+            ],
+        ], $epsilonClosure);
+    }
+
     /**
      * NFA for aa*(ϵ|b|ba)
      *
